@@ -8,7 +8,7 @@ class Snake(object):
         self._grid = None
         self._color = color
 
-    def Eat(self):
+    def _Eat(self):
         self._coordinate_seq.appendleft(self._coordinate_seq[0])
         self._grid._objects["Food"].NewFood()
 
@@ -25,7 +25,7 @@ class Snake(object):
         self._grid._Put([self._coordinate_seq.popleft()], self._grid._color)
         self._grid._Put(self._coordinate_seq, self._color)
         if self._grid._objects["Food"].IsEaten():
-            self.Eat()
+            self._Eat()
         return res
 
     def MoveRight(self):
@@ -38,7 +38,7 @@ class Snake(object):
         self._grid._Put([self._coordinate_seq.popleft()], self._grid._color)
         self._grid._Put(self._coordinate_seq, self._color)
         if self._grid._objects["Food"].IsEaten():
-            self.Eat()
+            self._Eat()
         return res
 
     def MoveUp(self):
@@ -51,7 +51,7 @@ class Snake(object):
         self._grid._Put([self._coordinate_seq.popleft()], self._grid._color)
         self._grid._Put(self._coordinate_seq, self._color)
         if self._grid._objects["Food"].IsEaten():
-            self.Eat()
+            self._Eat()
         return res
 
     def MoveDown(self):
@@ -64,7 +64,7 @@ class Snake(object):
         self._grid._Put([self._coordinate_seq.popleft()], self._grid._color)
         self._grid._Put(self._coordinate_seq, self._color)
         if self._grid._objects["Food"].IsEaten():
-            self.Eat()
+            self._Eat()
         return res
 
 class Food(object):
@@ -88,4 +88,3 @@ class Food(object):
             y = random.randint(0, self._grid._rows - 1)
         self._coordinate_seq = [(x, y)]
         self._grid._Put(self._coordinate_seq, self._color)
- 
