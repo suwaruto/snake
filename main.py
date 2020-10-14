@@ -11,6 +11,7 @@ def main():
     columns = 20
     grid = Grid(rows, columns, (255, 255, 255))
     snake = Snake([(10, 10)], (10, 10), (0, 0, 255))
+    snake.SetDirection(1)
     grid.Register("Snake", snake)
     grid.Register("Food", Food((3, 3), (255, 0, 0)))
     window = pygame.display.set_mode((width, height))
@@ -18,18 +19,20 @@ def main():
 
     running = True
     while running:
+        pygame.time.wait(100)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    running = snake.MoveLeft()
+                    snake.SetDirection(0)
                 elif event.key == pygame.K_RIGHT:
-                    running = snake.MoveRight()
+                    snake.SetDirection(1)
                 elif event.key == pygame.K_UP:
-                    running = snake.MoveUp()
+                    snake.SetDirection(2)
                 elif event.key == pygame.K_DOWN:
-                    running = snake.MoveDown()
+                    snake.SetDirection(3)
+        running = snake.Move()
         grid.Draw(window)
         pygame.display.update()
     print("Game over!")
