@@ -9,13 +9,13 @@ def main():
     height = 300
     rows = 20
     columns = 20
-    grid = Grid(rows, columns, (255, 255, 255))
+    window = pygame.display.set_mode((width, height))
+    window.fill((255, 255, 255))
+    grid = Grid(rows, columns, (255, 255, 255), window)
     snake = Snake([(10, 10)], (10, 10), (0, 0, 255))
     snake.SetDirection(1)
     grid.Register("Snake", snake)
     grid.Register("Food", Food((3, 3), (255, 0, 0)))
-    window = pygame.display.set_mode((width, height))
-    window.fill((255, 255, 255))
 
     running = True
     while running:

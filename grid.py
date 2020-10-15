@@ -1,10 +1,11 @@
 import pygame
 
 class Grid(object):
-    def __init__(self, rows, columns, color, grid = None):
+    def __init__(self, rows, columns, color, window, grid = None):
         self._rows = rows
         self._columns = columns
         self._color = color
+        self._window = window
         if not (grid is None):
             self._grid = grid[:][:]
         else: 
@@ -25,7 +26,8 @@ class Grid(object):
         obj._grid = self
         self._Put(obj._coordinate_seq, obj._color)
 
-    def Draw(self, surface):
+    def Draw(self, surface = None):
+        if surface == None: surface = self._window
         width = surface.get_width()  
         height = surface.get_height()
         step_x = width // self._columns
